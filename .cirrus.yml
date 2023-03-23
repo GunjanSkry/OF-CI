@@ -13,7 +13,8 @@ env:
     CIRRUS_SHELL: bash
 
 task:
-  name: "Recovery Build"
+  name: "OF Build"
+  only_if: $CIRRUS_BRANCH == 'main'
   timeout_in: 120m
   container:
       image: ghcr.io/faoliveira78/docker:latest
