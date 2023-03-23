@@ -2,9 +2,9 @@
 
 # Device
 export FOX_BRANCH="fox_12.1"
-export DT_LINK="https://github.com/GunjanSkry/recovery_device_realme_sdm710.git -b twrp-12.1"
+export DT_LINK="https://github.com/GunjanSkry/android_device_realme_RMX1971.git -b android-11"
 
-export DEVICE="realme_sdm710"
+export DEVICE="RMX1971"
 export OEM="realme"
 export DT_PATH="device/$OEM/$DEVICE"
 
