@@ -19,7 +19,7 @@ task:
   container:
       image: ghcr.io/faoliveira78/docker:latest
       cpu: 6
-      memory: 16G
+      memory: 24G
 
   Checks_script:
       - bash -c "$(curl -sL https://raw.githubusercontent.com/GunjanSkry/OF-CI/main/scripts/checks.sh)"
