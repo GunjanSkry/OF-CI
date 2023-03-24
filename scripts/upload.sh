@@ -6,7 +6,7 @@ source $CONFIG
 # A Function to Send Posts to Telegram
 telegram_message() {
 	curl -s -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
-	# -d chat_id="${TG_CHAT_ID}" \
+	-d chat_id="${TG_CHAT_ID}" \
 	-d parse_mode="HTML" \
 	-d text="$1"
 }
@@ -26,7 +26,8 @@ echo "============================"
 cd out/target/product/${DEVICE}
 
 # Set FILENAME var
-FILENAME=$(echo $OUTPUT)
+ZIPFILENAME=$(echo $OUTPUTZIP)
+IMGFILENAME=$(echo $OUTPUTIMG)
 
 # Upload to oshi.at
 if [ -z "$TIMEOUT" ];then
@@ -35,18 +36,28 @@ fi
 
 # Upload to WeTransfer
 # NOTE: the current Docker Image, "registry.gitlab.com/sushrut1101/docker:latest", includes the 'transfer' binary by Default
-transfer wet $FILENAME > link.txt || { echo "ERROR: Failed to Upload the Build!" && exit 1; }
+transfer wet $ZIPFILENAME > link.txt || { echo "ERROR: Failed to Upload the ZIP Build!" && exit 1; }
+transfer wet $IMGFILENAME > link1.txt || { echo "ERROR: Failed to Upload the IMG Build!" && exit 1; }
 
 # Mirror to oshi.at
-curl -T $FILENAME https://oshi.at/${FILENAME}/${TIMEOUT} > mirror.txt || { echo "WARNING: Failed to Mirror the Build!"; }
+curl -T $ZIPFILENAME https://oshi.at/${ZIPFILENAME}/${TIMEOUT} > mirror.txt || { echo "WARNING: Failed to Mirror the ZIP Build!"; }
+curl -T $IMGFILENAME https://oshi.at/${IMGFILENAME}/${TIMEOUT} > mirror1.txt || { echo "WARNING: Failed to Mirror the IMG Build!"; }
 
-DL_LINK=$(cat link.txt | grep Download | cut -d\  -f3)
-MIRROR_LINK=$(cat mirror.txt | grep Download | cut -d\  -f1)
+ZIP_DL_LINK=$(cat link.txt | grep Download | cut -d\  -f3)
+ZIP_MIRROR_LINK=$(cat mirror.txt | grep Download | cut -d\  -f1)
+
+IMG_DL_LINK=$(cat link1.txt | grep Download | cut -d\  -f3)
+IMG_MIRROR_LINK=$(cat mirror1.txt | grep Download | cut -d\  -f1)
 
 # Show the Download Link
 echo "=============================================="
-echo "Download Link: ${DL_LINK}" || { echo "ERROR: Failed to Upload the Build!"; }
-echo "Mirror: ${MIRROR_LINK}" || { echo "WARNING: Failed to Mirror the Build!"; }
+echo "ZIP Download Link: ${ZIP_DL_LINK}" || { echo "ERROR: Failed to Upload the ZIP Build!"; }
+echo "ZIP Mirror: ${ZIP_MIRROR_LINK}" || { echo "WARNING: Failed to Mirror the ZIP Build!"; }
+echo "                                              "
+echo "                                              "
+echo "                                              "
+echo "IMG Download Link: ${IMG_DL_LINK}" || { echo "ERROR: Failed to Upload the IMG Build!"; }
+echo "IMG Mirror: ${IMG_MIRROR_LINK}" || { echo "WARNING: Failed to Mirror the IMG Build!"; }
 echo "=============================================="
 
 DATE_L=$(date +%d\ %B\ %Y)
