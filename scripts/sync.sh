@@ -9,7 +9,7 @@ cd ~
 # A Function to Send Posts to Telegram
 telegram_message() {
 	curl -s -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
-	# -d chat_id="${TG_CHAT_ID}" \
+	-d chat_id="${TG_CHAT_ID}" \
 	-d parse_mode="HTML" \
 	-d text="$1"
 }
@@ -31,6 +31,22 @@ fi
 if [ -z "$SYNC_BRANCH" ]; then
     export SYNC_BRANCH=$(echo ${FOX_BRANCH} | cut -d_ -f2)
 fi
+
+echo -e \
+"
+🦊 OrangeFox Recovery CI
+
+✔️ The Syncing has been started!
+
+📱 Device: "${DEVICE}"
+🖥 Build System: "${FOX_BRANCH}"
+🌲 Logs: <a href=\"https://cirrus-ci.com/build/${CIRRUS_BUILD_ID}\">Here</a>
+" > tg.html
+
+TG_TEXT=$(< tg.html)
+
+telegram_message "${TG_TEXT}"
+echo " "
 
 # Sync the Sources
 bash orangefox_sync.sh --branch $SYNC_BRANCH --path $SYNC_PATH || { echo "ERROR: Failed to Sync OrangeFox Sources!" && exit 1; }
