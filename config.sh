@@ -14,7 +14,8 @@ export DT_PATH="device/$OEM/$DEVICE"
 ## "vendorbootimage" - for devices Using vendor boot for the recovery ramdisk (Usually for devices shipped with Android 12 or higher)
 export TARGET="recoveryimage"
 
-export OUTPUT="OrangeFox*.zip"
+export OUTPUTZIP="OrangeFox*.zip"
+export OUTPUTIMG="OrangeFox*.img"
 
 # Additional Dependencies (eg: Kernel Source)
 # Format: "repo dest"
