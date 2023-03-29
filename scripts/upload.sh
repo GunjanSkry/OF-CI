@@ -72,7 +72,8 @@ echo -e \
 
 📱 Device: "${DEVICE}"
 🖥 Build System: "${FOX_BRANCH}"
-⬇️ Download Link: <a href=\"${DL_LINK}\">Here</a>
+⬇️ ZIP Download Link: <a href=\"${ZIP_DL_LINK}\">Here</a>
+⬇️ IMG Download Link: <a href=\"${IMG_DL_LINK}\">Here</a>
 📅 Date: "$(date +%d\ %B\ %Y)"
 ⏱ Time: "$(date +%T)"
 " > tg.html

@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Device
-export FOX_BRANCH="fox_11.0"
-export DT_LINK="https://github.com/pjgowtham/recovery_device_realme_sdm710.git -b twrp11"
+export FOX_BRANCH="fox_12.1"
+export DT_LINK="https://github.com/pjgowtham/recovery_device_oplus_nicky.git -b android-12.1"
 
-export DEVICE="realme_sdm710"
-export OEM="realme"
+export DEVICE="nicky"
+export OEM="oplus"
 export DT_PATH="device/$OEM/$DEVICE"
 
 # Build Target
