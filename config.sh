@@ -2,10 +2,10 @@
 
 # Device
 export FOX_BRANCH="fox_12.1"
-export DT_LINK="https://github.com/pjgowtham/recovery_device_oplus_nicky.git -b android-12.1"
+export DT_LINK="https://github.com/GunjanSkry/android_device_realme_nicky-pbrp.git -b android-12.1"
 
 export DEVICE="nicky"
-export OEM="oplus"
+export OEM="realme"
 export DT_PATH="device/$OEM/$DEVICE"
 
 # Build Target
