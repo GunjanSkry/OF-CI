@@ -24,7 +24,7 @@ echo "============================"
 
 pwd
 # Change to the Output Directory
-cd root/work/out/target/product/${DEVICE}
+cd out/target/product/${DEVICE}
 
 # Set FILENAME var
 ZIPFILENAME=$(echo $OUTPUTZIP)
