@@ -2,7 +2,7 @@
 
 # Device
 export FOX_BRANCH="fox_12.1"
-export DT_LINK="https://github.com/naogws/device_realme_RMX1971.git -b twrp-11"
+export DT_LINK="https://github.com/GunjanSkry/device_realme_RMX1971.git -b twrp-11"
 
 export DEVICE="RMX1971"
 export OEM="realme"
